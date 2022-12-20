@@ -2,8 +2,8 @@ import {useAuth0} from 'react-native-auth0';
 import React from 'react';
 import {Alert, Button, Text, View} from 'react-native';
 
-export const LoginScreen = ({navigation}) => {
-  const {authorize, clearSession, user, getCredentials, error} = useAuth0();
+export const LoginScreen = ({}) => {
+  const {authorize, user, clearSession, getCredentials, error} = useAuth0();
 
   const onLogin = async () => {
     await authorize({scope: 'openid profile email'});
@@ -14,7 +14,7 @@ export const LoginScreen = ({navigation}) => {
   const loggedIn = user !== undefined && user !== null;
 
   const onLogout = async () => {
-    await clearSession({federated: true}, {localStorageOnly: false});
+    await clearSession();
   };
 
   return (
