@@ -1,6 +1,7 @@
 import {useAuth0} from 'react-native-auth0';
 import React from 'react';
-import {Alert, Button, Text, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
+import {Profile} from './Profile';
 
 export const LoginScreen = ({}) => {
   const {authorize, user, clearSession, getCredentials, error} = useAuth0();
@@ -8,7 +9,6 @@ export const LoginScreen = ({}) => {
   const onLogin = async () => {
     await authorize({scope: 'openid profile email'});
     const {accessToken} = await getCredentials();
-    Alert.alert('AccessToken: ' + accessToken);
   };
 
   const loggedIn = user !== undefined && user !== null;
@@ -20,8 +20,7 @@ export const LoginScreen = ({}) => {
   return (
     <View>
       <Text>Login </Text>
-      {user && <Text>You are logged in as {user.name}</Text>}
-      {!user && <Text>You are not logged in</Text>}
+      <Profile />
       <Button
         onPress={loggedIn ? onLogout : onLogin}
         title={loggedIn ? 'Log Out' : 'Log In'}
