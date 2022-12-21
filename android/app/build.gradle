@@ -159,6 +159,8 @@ android {
                 }
             }
         }
+
+        manifestPlaceholders = [auth0Domain: "dev-7ys-j0kk.us.auth0.com", auth0Scheme: "${applicationId}"]
     }
 
     if (isNewArchitectureEnabled()) {
